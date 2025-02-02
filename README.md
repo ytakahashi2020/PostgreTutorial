@@ -113,7 +113,7 @@ console.error(err);
 res.status(500).send("An error occurred");
 ```
 
-## 4 add user
+## 5 add user
 
 ### 1 create a post outline
 
@@ -139,7 +139,7 @@ const result = await pool.query("",);
 
 `res.status(500).send("An error occurred");`
 
-## 5 check
+## 6 check
 
 ### 1 get
 
