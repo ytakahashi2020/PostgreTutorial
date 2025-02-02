@@ -27,7 +27,7 @@ CREATE TABLE users (
 ```
 DB_HOST=localhost
 DB_USER=ytakahashi
-DB_PASSWORD=1111
+DB_PASSWORD=
 DB_NAME=sample
 DB_PORT=5432
 ```
