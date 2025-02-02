@@ -1,12 +1,26 @@
-psql -l
+## 1 create a table
 
-psql -U ytakahashi -d postgres
+### 1 check database
 
-`postgres=# CREATE DATABASE sample;`
+`psql -l`
+
+### 2 enter in the existing database
+
+`psql -U <user name> -d <database name>`
+
+### 3 create a database
+
+`CREATE DATABASE sample;`
+
+### 4 connect to the database
 
 `\c sample`
 
+### 5 check the database
+
 `\l`
+
+### 6 create a table
 
 ```
 CREATE TABLE users (
@@ -16,11 +30,15 @@ CREATE TABLE users (
 );
 ```
 
+### 7 check the table
+
 `\dt`
+
+### 8 confirm the contents
 
 `SELECT * FROM users;`
 
-## 1 create a server
+## 2 create a server
 
 ### 1 use express
 
@@ -37,7 +55,7 @@ const app = express();
 
 `app.listen(port, () => {});`
 
-## 1 create a pool
+## 3 create a pool
 
 ### 1 create a dotenv file
 
@@ -68,29 +86,27 @@ const pool = new Pool({
 });
 ```
 
-## 2 parse request
+## 4 get user list
 
-## 3 get user list
-
-### 1
+### 1 create get outline
 
 `app.get("/users", async (req, res) => {});`
 
-### 2
+### 2 create a query outline
 
 ```
 const result = await pool.query("");
 ```
 
-### 3
+### 3 set the SQL statement
 
 `SELECT * FROM users`
 
-### 4
+### 4 response
 
 `res.json(result.rows);`
 
-### 5
+### 5 error
 
 ```
 console.error(err);
@@ -99,28 +115,42 @@ res.status(500).send("An error occurred");
 
 ## 4 add user
 
-### 1
+### 1 create a post outline
 
 `app.post("/users", async (req, res) => {});`
 
-### 2
+### 2 create a query outline
 
 ```
 const { name, age } = req.body;
 const result = await pool.query("",);
 ```
 
-### 3
+### 3 set the SQL statement
 
-`INSERT INTO users (name, age) VALUES ($1, $2) RETURNING *`
+`INSERT INTO users (name, age) VALUES ($1, $2) RETURNING *`  
 `[name, age]`
 
-### 4
+### 4 response
 
 `res.status(201).json(result.rows[0]);`
 
-### 5
+### 5 error
 
 `res.status(500).send("An error occurred");`
 
-## 5
+## 5 check
+
+### 1 get
+
+`curl -X GET http://localhost:3000/users`
+
+### 2 post
+
+`curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"name": "test1", "age": 30}'`
+
+### 3 drop the database
+
+`psql -U ytakahashi -d postgres`
+
+`DROP DATABASE sample;`

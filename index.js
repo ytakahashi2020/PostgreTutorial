@@ -1,11 +1,15 @@
-require("dotenv").config();
 const express = require("express");
 const { Pool } = require("pg");
+require("dotenv").config();
 
 const app = express();
-const port = 3000;
 
-// PostgreSQL connection settings
+app.use(express.json());
+
+app.listen(3000, () => {
+  console.log("server is running 🚀");
+});
+
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -14,36 +18,26 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-// Process JSON requests
-app.use(express.json());
-
-// 📝 Retrieve the list of users
 app.get("/users", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM users");
     res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("An error occurred");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("error happens");
   }
 });
 
-// 📝 Add a new user
 app.post("/users", async (req, res) => {
-  const { name, age } = req.body;
   try {
+    const { name, age } = req.body;
     const result = await pool.query(
       "INSERT INTO users (name, age) VALUES ($1, $2) RETURNING *",
       [name, age]
     );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("An error occurred");
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("error happens");
   }
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`🚀 Server is running at http://localhost:${port}`);
 });
