@@ -20,6 +20,23 @@ CREATE TABLE users (
 
 `SELECT * FROM users;`
 
+## 1 create a server
+
+### 1 use express
+
+```
+const express = require("express");
+const app = express();
+```
+
+### 2 use express.json
+
+`app.use(express.json());`
+
+### 3
+
+`app.listen(port, () => {});`
+
 ## 1 create a pool
 
 ### 1 create a dotenv file
@@ -52,17 +69,6 @@ const pool = new Pool({
 ```
 
 ## 2 parse request
-
-### 1 use express
-
-```
-const express = require("express");
-const app = express();
-```
-
-### 2 use express.json
-
-`app.use(express.json());`
 
 ## 3 get user list
 
@@ -118,11 +124,3 @@ const result = await pool.query("",);
 `res.status(500).send("An error occurred");`
 
 ## 5
-
-### 1
-
-`app.listen(port, () => {});`
-
-### 2
-
-`` console.log(`🚀 Server is running at http://localhost:${port}`);``
