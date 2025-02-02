@@ -1,4 +1,4 @@
-## 1 create a table
+# 1 create a table
 
 ### 1 check database
 
@@ -38,7 +38,7 @@ CREATE TABLE users (
 
 `SELECT * FROM users;`
 
-## 2 create a server
+# 2 create a server
 
 ### 1 use express
 
@@ -55,7 +55,7 @@ const app = express();
 
 `app.listen(port, () => {});`
 
-## 3 create a pool
+# 3 create a pool
 
 ### 1 create a dotenv file
 
@@ -86,7 +86,7 @@ const pool = new Pool({
 });
 ```
 
-## 4 get user list
+# 4 get user list
 
 ### 1 create get outline
 
@@ -113,7 +113,7 @@ console.error(err);
 res.status(500).send("An error occurred");
 ```
 
-## 5 add user
+# 5 add user
 
 ### 1 create a post outline
 
@@ -139,7 +139,7 @@ const result = await pool.query("",);
 
 `res.status(500).send("An error occurred");`
 
-## 6 check
+# 6 check
 
 ### 1 get
 
